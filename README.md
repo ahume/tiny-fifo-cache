@@ -19,6 +19,9 @@ var maxItems = 100;
 var cache = new FIFOCache(maxItems);
 cache.put('key', 'value');
 cache.get('key'); // returns 'value'
+
+// Empty cache
+cache.flush();
 ```
 
 ### FIFO Eviction Policy
