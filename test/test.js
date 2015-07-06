@@ -47,4 +47,15 @@ describe('FIFOCache', function () {
         assert.equal(cache.get('a'), null);
         assert.equal(cache.get('b'), null);
     });
+
+    it('should be re-usable after flush', function () {
+        var cache = new FIFOCache(2);
+        cache.put('a', '1');
+        cache.put('b', '2');
+        cache.flush();
+        cache.put('a', '1');
+        cache.put('b', '2');
+        assert.equal(cache.get('a'), '1');
+        assert.equal(cache.get('b'), '2');
+    });
 });
