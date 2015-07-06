@@ -1,6 +1,6 @@
 /**
   * FIFO cache implementation
-  * Items cached in object hash and age managed by doubly-linked list for O(1) performance.
+  * Items cached in object hash and age managed by linked list for O(1) performance.
   */
 
 
@@ -54,15 +54,10 @@ FIFOCache.prototype = {
         this.cacheSize = this.cacheSize - 1;
 
         // Return this so it can be re-used.
-        node.previous = null;
-        node.next = null;
         return node;
     },
 
     _addToHeadOfList: function (node) {
-        node.next = this.head;
-        node.previous = null;
-
         // If there is a head already it's now going to have a previous.
         if (this.head) {
             this.head.previous = node;
@@ -78,8 +73,8 @@ FIFOCache.prototype = {
 
     _setup: function () {
         this.cache = Object.create(null);
-        this.next = null;
-        this.previous = null;
+        this.head = null;
+        this.tail = null;
         this.cacheSize = 0; // Because we can't query cache size in O(1)
     },
 
@@ -87,6 +82,7 @@ FIFOCache.prototype = {
         var newNode = spareNode || {};
         newNode.key = opts.key;
         newNode.value = opts.value;
+        newNode.previous = null;
         return newNode;
     }
 };
