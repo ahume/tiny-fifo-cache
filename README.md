@@ -2,13 +2,13 @@
 
 > Simple FIFO cache. put and get.
 
+Suitable for use in browsers and Node.js.
 
 ## Install
 
 ```sh
 $ npm install --save tiny-fifo-cache
 ```
-
 
 ## Usage
 
@@ -38,7 +38,6 @@ npm test
 ## License
 
 MIT © [Andy Hume](2015)
-
 
 [npm-image]: https://badge.fury.io/js/tiny-fifo-cache.svg
 [npm-url]: https://npmjs.org/package/tiny-fifo-cache
